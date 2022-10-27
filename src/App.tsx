@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import Login from './Login'
-import Logout from './Logout'
+import { createTheme, CssBaseline, PaletteMode, ThemeProvider } from '@mui/material'
+import { lightTheme, darkTheme } from './themes/defaultTheme'
+import { getCookie, setCookie, removeCookie } from 'typescript-cookie'
+import Login from './pages/Login'
+import Header from './components/Header'
+import Page from './pages/Page'
+import { ColorContext } from './ColorContext'
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
-import { getCookie, setCookie, removeCookie } from 'typescript-cookie'
-import {
-  Box,
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton
-} from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
 
 interface IUser {
   token: string
@@ -50,9 +46,37 @@ const App : React.FC = () => {
     return undefined
   }
 
+  function makeThemeFromCookie (): PaletteMode {
+    const cookieTheme = getCookie('general.theme')
+    if (cookieTheme !== undefined &&
+        cookieTheme === 'dark') {
+      return 'dark'
+    }
+    return 'light'
+  }
+
   const cookieUser = makeUserFromCookie()
   const [token, setToken] = useState<string>(cookieUser === undefined ? '' : cookieUser.token)
   const [authUser, setAuthUser] = useState<User | undefined>(cookieUser)
+  const [mode, setMode] = React.useState<PaletteMode>(makeThemeFromCookie())
+
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode: PaletteMode) => {
+          const newMode: PaletteMode = prevMode === 'light' ? 'dark' : 'light'
+          setCookie('general.theme', newMode, { expires: 7 })
+          return newMode
+        })
+      }
+    }),
+    []
+  )
+
+  const theme = React.useMemo(
+    () => createTheme(mode === 'light' ? lightTheme : darkTheme),
+    [mode]
+  )
 
   const onScriptLoadSuccess = () => {
     console.log('Successfully loaded script')
@@ -81,31 +105,19 @@ const App : React.FC = () => {
   }, [token])
 
   return (
-    <GoogleOAuthProvider
-      clientId="9552818156-lu2j4jg03japldo9jnsiurpmvantk2hi.apps.googleusercontent.com"
-      onScriptLoadSuccess={onScriptLoadSuccess}
-      onScriptLoadError={onScriptLoadError}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Whosdriving
-            </Typography>
-            <Logout AuthUser={authUser} loginAuthUser={onLoginAuthUser} />
-          </Toolbar>
-        </AppBar>
-      </Box>
-      {authUser === undefined && <Login AuthUser={authUser} loginAuthUser={onLoginAuthUser} />}
-    </GoogleOAuthProvider>
+    <ColorContext.Provider value={colorMode}>
+      <ThemeProvider theme={ theme }>
+        <CssBaseline enableColorScheme />
+        <GoogleOAuthProvider
+          clientId="9552818156-lu2j4jg03japldo9jnsiurpmvantk2hi.apps.googleusercontent.com"
+          onScriptLoadSuccess={onScriptLoadSuccess}
+          onScriptLoadError={onScriptLoadError}>
+            <Header AuthUser={authUser} loginAuthUser={onLoginAuthUser} />
+            {authUser === undefined && <Login AuthUser={authUser} loginAuthUser={onLoginAuthUser} />}
+            {authUser !== undefined && <Page AuthUser={authUser} />}
+        </GoogleOAuthProvider>
+      </ThemeProvider>
+    </ColorContext.Provider>
   )
 }
 
