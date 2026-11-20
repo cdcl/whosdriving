@@ -21,7 +21,7 @@ const Login = (props :any) => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{ border: 1 }}>
       <CssBaseline />
       <Paper sx={{
         m: 3,
