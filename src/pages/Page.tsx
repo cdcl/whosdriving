@@ -39,52 +39,52 @@ const Page = (props : any) => {
             <Paper>
               <Typography gutterBottom={false} noWrap={true} align={ 'center' } variant="subtitle1" component="h6">
                 Rotation 1 details
-                <List component="nav" aria-label="mailbox folders">
-                    <ListItem>
-                        <ListItemText primary="mv1" secondary="date: 22/06/2022 driver: Bertrand Vermaut"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem>
-                        <ListItemText primary="mv2" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv3" secondary="date: 22/06/2022 driver: Bertrand Vermaut"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv4" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv5" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv6" secondary="date: 22/06/2022 date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv7" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv8" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv9" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv10" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                    <Divider light />
-                    <ListItem >
-                        <ListItemText primary="mv11" secondary="date: 22/06/2022 driver: Carl Declercq"/>
-                    </ListItem>
-                </List>
               </Typography>
+              <List component="nav" aria-label="mailbox folders">
+                <ListItem>
+                  <ListItemText primary="mv1" secondary="date: 22/06/2022 driver: Bertrand Vermaut"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv2" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv3" secondary="date: 22/06/2022 driver: Bertrand Vermaut"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv4" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv5" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv6" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv7" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv8" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv9" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv10" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+                <Divider light />
+                <ListItem>
+                  <ListItemText primary="mv11" secondary="date: 22/06/2022 driver: Carl Declercq"/>
+                </ListItem>
+              </List>
             </Paper>
           </Grid>
         </Grid>
